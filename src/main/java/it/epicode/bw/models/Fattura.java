@@ -3,6 +3,9 @@ package it.epicode.bw.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import it.epicode.bw.enums.StatoFattura;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -30,11 +33,12 @@ public class Fattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id_fattura;
 private Integer anno;
-private LocalDateTime dataEmissione;
+private LocalDate dataEmissione;
 //bigdecimal???
 private Double importo;
 private Integer numeroFattura;
 @ManyToOne
+@JsonIgnore
 private Cliente cliente;
 //da vedere domani:
 @Enumerated(EnumType.STRING)
