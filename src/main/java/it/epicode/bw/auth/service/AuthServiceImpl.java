@@ -77,6 +77,7 @@ public class AuthServiceImpl implements AuthService{
         user.setNomeContatto(registerDto.getName());
         user.setUsername(registerDto.getUsername());
         user.setEmail(registerDto.getEmail());
+        user.setCognomeContatto(registerDto.getLastname());
         user.setPsw(passwordEncoder.encode(registerDto.getPassword()));
 
         Set<Role> roles = new HashSet<>();
