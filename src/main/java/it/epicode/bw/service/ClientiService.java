@@ -35,11 +35,11 @@ public class ClientiService {
 		c.setPIva(pIva);
 		c.setEmail(c.getUsername() + "@mail.com");
 		c.setPsw(fake.internet().password(6, 10, true, true));
-		c.setDatainserimento(LocalDate.now());
+		c.setDataInserimento(LocalDate.now());
 		c.setUltimoContatto(LocalDate.now());
 		c.setFatturatoAnnuale(fatturatoAnnuale);
 		c.setPec(c.getUsername() + "@pec.it");
-		c.setTel(fake.phoneNumber());
+		c.setTel(fake.phoneNumber().cellPhone());
 		c.setEmailContatto(c.getEmail());
 		c.setNomeContatto(fake.name() + "");
 		c.setCognomeContatto(fake.name().lastName());
@@ -92,12 +92,12 @@ public class ClientiService {
 	}
 	
 	public List<Cliente> findByDateLastCont(LocalDate l) {
-		List<Cliente> list = clienteRepo.findByDataUltimoContatto(l);
+		List<Cliente> list = clienteRepo.findByUltimoContatto(l);
 		return list;
 	}
 	
 	public Page<Cliente> findByDateLastCont(Pageable pag, LocalDate l) {
-		Page<Cliente> list = clienteRepo.findByDataUltimoContatto(pag,l);
+		Page<Cliente> list = clienteRepo.findByUltimoContatto(pag,l);
 		return list;
 	}
 	
@@ -111,13 +111,13 @@ public class ClientiService {
 		return list;
 	}
 	
-	public List<Cliente> findOrderName(String s) {
-		List<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(s);
-		return list;
-	}
-	
-	public Page<Cliente> findOrderName(Pageable pag, String s) {
-		Page<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(pag, s);
-		return list;
-	}
+//	public List<Cliente> findOrderName(String s) {
+//		List<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(s);
+//		return list;
+//	}
+//	
+//	public Page<Cliente> findOrderName(Pageable pag, String s) {
+//		Page<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(pag, s);
+//		return list;
+//	}
 }

@@ -42,15 +42,15 @@ private String pIva;
 private String username;
 private String email;
 private String psw;
-private LocalDate datainserimento;
+private LocalDate dataInserimento;
 private LocalDate ultimoContatto;
 private Double fatturatoAnnuale;
 private String pec;
-private PhoneNumber tel;
+private String tel;
 private String emailContatto;
 private String nomeContatto;
 private String cognomeContatto;
-private PhoneNumber telContatto;
+private String telContatto;
 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //@JoinTable(name = "users_roles",
 //        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),

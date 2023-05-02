@@ -31,12 +31,12 @@ public interface ClienteRepo extends JpaRepository<Cliente, Long>, PagingAndSort
     public List<Cliente> findByDataInserimento(LocalDate l);
     public Page<Cliente> findByDataInserimento(Pageable pag,LocalDate l);
     
-    public List<Cliente> findByDataUltimoContatto(LocalDate l);
-    public Page<Cliente> findByDataUltimoContatto(Pageable pag,LocalDate l);
+    public List<Cliente> findByUltimoContatto(LocalDate l);
+    public Page<Cliente> findByUltimoContatto(Pageable pag,LocalDate l);
     
     public List<Cliente> findByNomeContattoContains(String s);
     public Page<Cliente> findByNomeContattoContains(Pageable pag,String s);
     
-    public List<Cliente> findByOrderByRagioneSocialeAsc(String s);
-    public Page<Cliente> findByOrderByRagioneSocialeAsc(Pageable pag,String s);
+    public List<Cliente> findByRagioneSocialeOrderByRagioneSocialeAsc(String s);
+    public Page<Cliente> findByRagioneSocialeOrderByRagioneSocialeAsc(Pageable pag,String s);
 }
