@@ -3,6 +3,7 @@ package it.epicode.bw.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
@@ -54,6 +55,18 @@ public  class FattureService {
 		return f;
 
 	}
+	
+	public Fattura findById(long id) {
+		return fattureRepo.findById(id).get();
+		
+		
+	}
+	public List<Fattura> findAllFatture(){
+		return  fattureRepo.findAll();
+		
+		
+	}
+	
 	
 	public List<Fattura> findByStadioFattura(StatoFattura stadioFattura){
 		List<Fattura> f = fattureRepo.findByStadioFattura(stadioFattura);
