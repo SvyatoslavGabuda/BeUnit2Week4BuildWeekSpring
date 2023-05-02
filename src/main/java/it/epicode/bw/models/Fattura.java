@@ -1,8 +1,12 @@
 package it.epicode.bw.models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import it.epicode.bw.enums.StatoFattura;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,12 +30,13 @@ public class Fattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id_fattura;
 private Integer anno;
-private LocalDate dataEmissione;
+private LocalDateTime dataEmissione;
 //bigdecimal???
 private Double importo;
 private Integer numeroFattura;
 @ManyToOne
 private Cliente cliente;
 //da vedere domani:
-//private List<StatoFattura> stadioFattura;
+@Enumerated(EnumType.STRING)
+private StatoFattura stadioFattura;
 }
