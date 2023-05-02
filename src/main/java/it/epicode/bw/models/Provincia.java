@@ -23,8 +23,9 @@ public class Provincia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id_provincia;
-private String nome;
-private String sigla;
+private String Provincia;
+private String Sigla;
+private String Regione;
 @OneToMany(mappedBy = "provincia")
 private List<Comune> comuni;
 }
