@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.github.javafaker.PhoneNumber;
+
 import it.epicode.bw.auth.entity.Role;
 import it.epicode.bw.enums.TipoSocieta;
 import jakarta.persistence.CascadeType;
@@ -15,8 +17,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -46,11 +46,11 @@ private LocalDate datainserimento;
 private LocalDate ultimoContatto;
 private Double fatturatoAnnuale;
 private String pec;
-private String tel;
+private PhoneNumber tel;
 private String emailContatto;
 private String nomeContatto;
 private String cognomeContatto;
-private String telContatto;
+private PhoneNumber telContatto;
 @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 //@JoinTable(name = "users_roles",
 //        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
