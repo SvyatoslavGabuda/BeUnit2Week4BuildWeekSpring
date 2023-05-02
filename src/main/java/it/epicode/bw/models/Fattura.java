@@ -30,7 +30,7 @@ public class Fattura {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id_fattura;
 private Integer anno;
-private LocalDateTime dataEmissione;
+private LocalDate dataEmissione;
 //bigdecimal???
 private Double importo;
 private Integer numeroFattura;

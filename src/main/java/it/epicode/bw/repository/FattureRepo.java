@@ -1,7 +1,8 @@
 package it.epicode.bw.repository;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -20,8 +21,8 @@ public interface FattureRepo extends JpaRepository<Fattura, Long>{
 	public List<Fattura> findByStadioFattura(StatoFattura stadioFattura);
 	public Page<Fattura> findByStadioFattura(Pageable pag,StatoFattura stadioFattura);
 	
-	public List<Fattura> findByDataEmissione(LocalDateTime l);
-	public Page<Fattura> findByDataEmissione(Pageable pag,LocalDateTime l);
+	public List<Fattura> findByDataEmissione(LocalDate l);
+	public Page<Fattura> findByDataEmissione(Pageable pag,LocalDate l);
 	
 	public List<Fattura> findByAnno(Integer a);
 	public Page<Fattura> findByAnno(Pageable pag,Integer a);
