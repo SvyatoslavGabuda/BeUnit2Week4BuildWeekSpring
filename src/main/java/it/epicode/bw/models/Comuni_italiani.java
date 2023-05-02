@@ -2,10 +2,15 @@ package it.epicode.bw.models;
 
 
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +34,9 @@ public class Comuni_italiani {
 	private String Progressivo_del_Comune;
 	private String Denominazione_in_italiano;
 	private String Nome_Provincia;
+	
+	@JsonIgnoreProperties("comune")
+	@OneToMany(mappedBy="comune")
+	private List<Indirizzo> indirizzo;
+
 }

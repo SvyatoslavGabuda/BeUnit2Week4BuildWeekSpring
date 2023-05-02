@@ -28,5 +28,5 @@ private String civico;
 private String Localita;
 private int cap;
 @ManyToOne
-private Comune comune;
+private Comuni_italiani comune;
 }

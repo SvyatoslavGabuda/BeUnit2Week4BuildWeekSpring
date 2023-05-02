@@ -34,6 +34,7 @@ public class AuthRunner implements ApplicationRunner{
 		System.out.println("Run...");
 		//setRoleDefault();
 		
+
 	}
 	
 	private void setRoleDefault() {
