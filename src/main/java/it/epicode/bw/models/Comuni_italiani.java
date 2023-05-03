@@ -30,7 +30,7 @@ public class Comuni_italiani {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_comuneItaliano;
-	private Integer Codice_Provincia;
+	private String Codice_Provincia;
 	private String Progressivo_del_Comune;
 	private String Denominazione_in_italiano;
 	private String Nome_Provincia;
