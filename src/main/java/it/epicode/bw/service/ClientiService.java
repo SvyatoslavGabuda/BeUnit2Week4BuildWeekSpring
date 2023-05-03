@@ -7,11 +7,13 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.github.javafaker.Faker;
 
+import it.epicode.bw.auth.exception.MyAPIException;
 import it.epicode.bw.auth.service.AuthServiceImpl;
 import it.epicode.bw.models.Cliente;
 import it.epicode.bw.models.Fattura;
@@ -49,12 +51,24 @@ public class ClientiService {
 		return c;
 	}
 	
-	public void modificaCliente(Cliente c) {
-		clienteRepo.save(c);
+	public Cliente modificaCliente(Cliente c) {
+		if (clienteRepo.existsById(c.getId_cliente())) {
+			clienteRepo.save(c);
+			return c;
+		} else {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "Cliente non torvata");
+		}
 	}
+
 	
-	public void eliminaCliente(Long id) {
-		clienteRepo.deleteById(id);
+	public String eliminaCliente(Long id) {
+		if (clienteRepo.existsById(id)) {
+			clienteRepo.deleteById(id);
+			return "Cliente eliminata";
+
+		} else {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "Cliente non torvata");
+		}
 	}
 	
 	public Cliente findById(Long id) {
@@ -71,8 +85,13 @@ public class ClientiService {
 		
 	}
 	
+//	<<<<INIZIO FATTURATO>>>>
 	public List<Cliente> findByFatturato(Double a, Double b) {
 		 List<Cliente> list = clienteRepo.findByFatturatoAnnualeBetween(a, b);
+		return list;
+	}
+	public List<Cliente> orderByFatturato(Double a) {
+		List<Cliente> list = clienteRepo.findByFatturatoAnnualeOrderByFatturatoAnnualeAsc(a);
 		return list;
 	}
 	
@@ -80,9 +99,20 @@ public class ClientiService {
 		 Page<Cliente> list = clienteRepo.findByFatturatoAnnualeBetween(pag, a, b);
 		return list;
 	}
+	public Page<Cliente> OrderByFatturato(Pageable pag, Double a) {
+		Page<Cliente> list = clienteRepo.findByFatturatoAnnualeOrderByFatturatoAnnualeAsc(pag, a);
+		return list;
+	}
+//	<<<<FINE FATTURATO>>>>
 	
+	
+//	<<<<INIZIO DATA INSERIMENTO>>>>
 	public List<Cliente> findByDateIns(LocalDate l) {
 		List<Cliente> list = clienteRepo.findByDataInserimento(l);
+		return list;
+	}
+	public List<Cliente> orderByDateIns(LocalDate l) {
+		List<Cliente> list = clienteRepo.findByDataInserimentoOrderByDataInserimentoAsc(l);
 		return list;
 	}
 	
@@ -90,9 +120,21 @@ public class ClientiService {
 		Page<Cliente> list = clienteRepo.findByDataInserimento(pag,l);
 		return list;
 	}
+	public Page<Cliente> orderByDateIns(Pageable pag, LocalDate l) {
+		Page<Cliente> list = clienteRepo.findByDataInserimentoOrderByDataInserimentoAsc(pag,l);
+		return list;
+	}
+//	<<<<FINE DATA INSERIMENTO>>>>
 	
+	
+	
+//	<<<<INIZIO LAST CONT>>>>	
 	public List<Cliente> findByDateLastCont(LocalDate l) {
 		List<Cliente> list = clienteRepo.findByUltimoContatto(l);
+		return list;
+	}
+	public List<Cliente> orderByDateLastCont(LocalDate l) {
+		List<Cliente> list = clienteRepo.findByUltimoContattoOrderByUltimoContattoAsc(l);
 		return list;
 	}
 	
@@ -100,24 +142,54 @@ public class ClientiService {
 		Page<Cliente> list = clienteRepo.findByUltimoContatto(pag,l);
 		return list;
 	}
+	public Page<Cliente> orderByDateLastCont(Pageable pag, LocalDate l) {
+		Page<Cliente> list = clienteRepo.findByUltimoContattoOrderByUltimoContattoAsc(pag,l);
+		return list;
+	}
+//	<<<<FINE LAST CONT>>>>	
 	
-	public List<Cliente> findByContains(String s) {
+	
+	
+//	<<<<INIZIO RICERCA PER NOME>>>>	
+	public List<Cliente> findByNameContains(String s) {
 		List<Cliente> list = clienteRepo.findByNomeContattoContains(s);
 		return list;
 	}
-	
-	public Page<Cliente> findByContains(Pageable pag, String s) {
-		Page<Cliente> list = clienteRepo.findByNomeContattoContains(pag ,s);
+	public List<Cliente> orderByName(String s) {
+		List<Cliente> list = clienteRepo.findByNomeContattoOrderByNomeContattoAsc(s);
 		return list;
 	}
 	
-//	public List<Cliente> findOrderName(String s) {
-//		List<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(s);
-//		return list;
-//	}
-//	
-//	public Page<Cliente> findOrderName(Pageable pag, String s) {
-//		Page<Cliente> list = clienteRepo.findByOrderByRagioneSocialeAsc(pag, s);
-//		return list;
-//	}
+	public Page<Cliente> findByNameContains(Pageable pag, String s) {
+		Page<Cliente> list = clienteRepo.findByNomeContattoContains(pag ,s);
+		return list;
+	}
+	public Page<Cliente> orderByName(Pageable pag, String s) {
+		Page<Cliente> list = clienteRepo.findByNomeContattoOrderByNomeContattoAsc(pag ,s);
+		return list;
+	}
+//	<<<<FINE RICERCA PER NOME>>>>	
+	
+	
+	
+//	<<<<INIZIO RICERCA SEDE LEGALE>>>>	
+	public List<Cliente> findBySedeLegale( Indirizzo sedeLegale){
+		List<Cliente> list = clienteRepo.findBySedeLegale(sedeLegale);
+		return list;
+	}
+	public List<Cliente> orderBySedeLegale( Indirizzo sedeLegale){
+		List<Cliente> list = clienteRepo.findBySedeLegaleOrderBySedeLegaleAsc(sedeLegale);
+		return list;
+	}
+	
+	public Page<Cliente> findBySedeLegale( Pageable pag, Indirizzo sedeLegale){
+		Page<Cliente> list = clienteRepo.findBySedeLegale(pag, sedeLegale);
+		return list;
+	}
+	public Page<Cliente> orderBySedeLegale( Pageable pag, Indirizzo sedeLegale){
+		Page<Cliente> list = clienteRepo.findBySedeLegaleOrderBySedeLegaleAsc(pag, sedeLegale);
+		return list;
+	}
+//	<<<<FINE RICERCA SEDE LEGALE>>>>	
+
 }
