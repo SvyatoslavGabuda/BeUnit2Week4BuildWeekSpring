@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.github.javafaker.PhoneNumber;
+
 import it.epicode.bw.auth.entity.Role;
 import it.epicode.bw.enums.TipoSocieta;
 import jakarta.persistence.CascadeType;
@@ -15,8 +17,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -42,7 +42,7 @@ private String pIva;
 private String username;
 private String email;
 private String psw;
-private LocalDate datainserimento;
+private LocalDate dataInserimento;
 private LocalDate ultimoContatto;
 private Double fatturatoAnnuale;
 private String pec;
