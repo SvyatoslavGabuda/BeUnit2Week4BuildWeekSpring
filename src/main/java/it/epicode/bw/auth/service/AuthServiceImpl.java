@@ -104,6 +104,13 @@ public class AuthServiceImpl implements AuthService{
     	else if(role.equals("ROLE_MODERATOR")) return ERole.ROLE_MODERATOR;
     	else return ERole.ROLE_USER;
     }
+//    public void changePermissions(String s,ERole roles) {
+//        Set<Role> role = new HashSet<Role>();
+//        role.add(roleRepository.findByRoleName(roles).get());
+//        com.security.auth.entity.User u = userRepository.findByEmail(s).get();
+//        u.setRoles(role);
+//        userRepository.save(u);
+//    }
     public Cliente getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
