@@ -111,12 +111,13 @@ public class FattureController {
 	}
 	
 	@DeleteMapping("/{id}")
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<String> eliminafattura( @PathVariable Long id){
 		return new ResponseEntity<String>(fattureService.eliminaFattura(id), HttpStatus.OK);
 	}
 	@PutMapping()
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<?> updateFattura(@RequestBody Fattura f){
 		return new ResponseEntity<Fattura>(fattureService.modificaFattura(f),HttpStatus.OK);
 	}
