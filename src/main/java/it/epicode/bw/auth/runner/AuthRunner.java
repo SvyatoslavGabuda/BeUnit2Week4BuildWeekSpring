@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import it.epicode.bw.auth.entity.ERole;
 import it.epicode.bw.auth.entity.Role;
 import it.epicode.bw.auth.service.AuthService;
+import it.epicode.bw.csvreader.CsvReader;
+import it.epicode.bw.models.Comuni_italiani;
 import it.epicode.bw.repository.ClienteRepo;
 import it.epicode.bw.repository.RoleRepository;
 

@@ -49,6 +49,9 @@ public class FattureService {
 	}
 
 	public String eliminaFattura(Long id) {
+		System.out.println(id);
+		System.out.println(fattureRepo.existsById(id));
+		
 		if (fattureRepo.existsById(id)) {
 			fattureRepo.deleteById(id);
 			return "fattura eliminata";
