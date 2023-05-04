@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -103,7 +104,7 @@ public class FattureController {
 
 	}
 
-	@GetMapping("/pag/stadio/{s}")
+	@GetMapping("/pag/stadio/{s}/p")
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	public ResponseEntity<Page<Fattura>> trovaFatturaByStadioFatture(Pageable pag, @PathVariable StatoFattura s) {
 		return new ResponseEntity<Page<Fattura>>(fattureService.findByStadioFatturaPageable(pag, s), HttpStatus.OK);

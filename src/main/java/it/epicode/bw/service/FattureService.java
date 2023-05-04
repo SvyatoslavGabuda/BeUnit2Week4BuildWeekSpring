@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -99,6 +100,15 @@ public class FattureService {
 			throw new MyAPIException(HttpStatus.NOT_FOUND, "Fatture non torvate");
 		}
 
+	}
+	public Page<Fattura> findAllFatturepagin(Pageable pag) {
+		if (!fattureRepo.findAll().isEmpty()) {
+			return fattureRepo.findAll(pag);
+			
+		} else {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "Fatture non torvate");
+		}
+		
 	}
 
 	public List<Fattura> findByStadioFattura(StatoFattura stadioFattura) {

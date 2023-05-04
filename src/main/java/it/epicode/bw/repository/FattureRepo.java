@@ -29,6 +29,7 @@ public interface FattureRepo extends JpaRepository<Fattura, Long>{
 	
 	public List<Fattura> findByImportoBetween(Double importo,Double importo2);
 	public Page<Fattura> findByImportoBetween(Pageable pag,Double importo,Double importo2);
+	public Page<Fattura> findAll(Pageable pag);
 	
 	
 
