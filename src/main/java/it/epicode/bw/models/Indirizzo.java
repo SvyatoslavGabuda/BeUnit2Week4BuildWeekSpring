@@ -1,5 +1,7 @@
 package it.epicode.bw.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ private String civico;
 private String Localita;
 private int cap;
 @ManyToOne
+@JsonIgnoreProperties(value = "indirizzo")
 private Comuni_italiani comune;
 
 

@@ -35,7 +35,7 @@ public class Comuni_italiani {
 	private String Denominazione_in_italiano;
 	private String Nome_Provincia;
 
-	@JsonIgnoreProperties("comune")
+	@JsonIgnoreProperties(value = "comune")
 	@OneToMany(mappedBy = "comune", fetch = FetchType.EAGER)
 	private List<Indirizzo> indirizzo = new ArrayList<Indirizzo>();
 

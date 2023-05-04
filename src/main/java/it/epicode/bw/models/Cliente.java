@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.PhoneNumber;
 
 import it.epicode.bw.auth.entity.Role;
@@ -65,6 +66,7 @@ private Indirizzo sedeLegale;
 @OneToOne
 private Indirizzo sedeOperativa;
 @OneToMany(mappedBy = "cliente")
+@JsonIgnoreProperties(value = "cliente")
 private List<Fattura> fatture;
 
 

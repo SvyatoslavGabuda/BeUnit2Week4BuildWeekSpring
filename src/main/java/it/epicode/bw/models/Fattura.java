@@ -38,7 +38,7 @@ private LocalDate dataEmissione;
 private Double importo;
 private Integer numeroFattura;
 @ManyToOne
-@JsonIgnore
+@JsonIgnoreProperties(value = "fatture")
 private Cliente cliente;
 //da vedere domani:
 @Enumerated(EnumType.STRING)
