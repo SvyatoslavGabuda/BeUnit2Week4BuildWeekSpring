@@ -29,4 +29,6 @@ private String Localita;
 private int cap;
 @ManyToOne
 private Comuni_italiani comune;
+
+
 }

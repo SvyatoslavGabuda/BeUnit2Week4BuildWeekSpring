@@ -46,6 +46,8 @@ public class ClientiService {
 		c.setNomeContatto(fake.name() + "");
 		c.setCognomeContatto(fake.name().lastName());
 		c.setTelContatto(c.getTel());
+		c.setSedeLegale(indirizzo);
+		c.setSedeOperativa(indirizzo);
 		System.out.println("Cliente creato!");
 		clienteRepo.save(c);
 		return c;

@@ -12,6 +12,7 @@ import it.epicode.bw.models.Comuni_italiani;
 import it.epicode.bw.models.Provincia;
 import it.epicode.bw.repository.ComuneRepo;
 import it.epicode.bw.repository.ProvinceRepo;
+import it.epicode.bw.service.IndirizzoService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -23,11 +24,13 @@ ComuneRepo cRepo;
 ProvinceRepo pRepo;
 @Autowired
 AuthServiceImpl aS;
+@Autowired
+IndirizzoService iS;
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		log.warn("main runner start");
-		String path1 = "C:/Users/svy/workspace-di-eclipse/epicode BE/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/comuni-italiani.csv";
-		String path2 = "C:/Users/svy/workspace-di-eclipse/epicode BE/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/province-italiane.csv";
+		String path1 = "C:/Users/pivot/OneDrive/Desktop/Cartella Progetti/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/comuni-italiani.csv";
+		String path2 = "C:/Users/pivot/OneDrive/Desktop/Cartella Progetti/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/province-italiane.csv";
 		CsvReader csv = new CsvReader();
 		
 		// IMPORT LISTA COMUNI
@@ -41,7 +44,7 @@ AuthServiceImpl aS;
 //			c.setNome_Provincia(f.get(3));
 //			cRepo.save(c);
 //		});
-		// IMPORT LISTA PROVINCE
+		 //IMPORT LISTA PROVINCE
 //		csv.setScanner(path2);
 //		csv.getRecords().forEach(f->{
 //			System.out.println(f);
@@ -52,7 +55,7 @@ AuthServiceImpl aS;
 //			pRepo.save(p);
 //		});
 		//aS.changePermissions(1, ERole.ROLE_ADMIN);
-		
+//		iS.creaIndirizzo();
 	}
 
 }

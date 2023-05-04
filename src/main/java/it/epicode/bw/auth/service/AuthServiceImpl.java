@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +23,7 @@ import it.epicode.bw.auth.payload.RegisterDto;
 import it.epicode.bw.auth.security.JwtTokenProvider;
 import it.epicode.bw.models.Cliente;
 import it.epicode.bw.repository.ClienteRepo;
+import it.epicode.bw.repository.IndirizzoRepo;
 import it.epicode.bw.repository.RoleRepository;
 
 @Service
@@ -31,6 +33,8 @@ public class AuthServiceImpl implements AuthService{
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private IndirizzoRepo rep;
 
 
     public AuthServiceImpl(AuthenticationManager authenticationManager,
@@ -83,6 +87,8 @@ public class AuthServiceImpl implements AuthService{
         user.setDataInserimento(LocalDate.now());
         user.setUltimoContatto(LocalDate.now());
         user.setEmailContatto(registerDto.getEmail());
+        user.setSedeLegale(rep.findById(1l).get());
+        user.setSedeOperativa(rep.findById(1l).get());
         
 
         Set<Role> roles = new HashSet<>();

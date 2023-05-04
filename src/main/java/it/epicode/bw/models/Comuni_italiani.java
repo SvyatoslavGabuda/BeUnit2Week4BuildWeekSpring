@@ -1,12 +1,12 @@
 package it.epicode.bw.models;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,7 +22,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 @Entity
 @Table(name = "comuni-italiani")
 public class Comuni_italiani {
@@ -34,9 +34,18 @@ public class Comuni_italiani {
 	private String Progressivo_del_Comune;
 	private String Denominazione_in_italiano;
 	private String Nome_Provincia;
-	
+
 	@JsonIgnoreProperties("comune")
-	@OneToMany(mappedBy="comune")
-	private List<Indirizzo> indirizzo;
+	@OneToMany(mappedBy = "comune", fetch = FetchType.EAGER)
+	private List<Indirizzo> indirizzo = new ArrayList<Indirizzo>();
+
+	@Override
+	public String toString() {
+		return "Comuni_italiani [id_comuneItaliano=" + id_comuneItaliano + ", Codice_Provincia=" + Codice_Provincia
+				+ ", Progressivo_del_Comune=" + Progressivo_del_Comune + ", Denominazione_in_italiano="
+				+ Denominazione_in_italiano + ", Nome_Provincia=" + Nome_Provincia + "]";
+	}
+	
+	
 
 }
