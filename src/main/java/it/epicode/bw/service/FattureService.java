@@ -37,6 +37,11 @@ public class FattureService {
 		Cliente clinte = cRepo.findById(id).get();
 		f1.setCliente(clinte);
 		f1.setImporto(importo);
+		f1.setNumeroFattura(Integer.parseInt
+				(""+clinte.getId_cliente()+
+						""+clinte.getEmailContatto().length()+
+						""+LocalDateTime.now().getMinute()+""+
+						LocalDateTime.now().getSecond()));
 		fattureRepo.save(f1);
 		return f1;
 

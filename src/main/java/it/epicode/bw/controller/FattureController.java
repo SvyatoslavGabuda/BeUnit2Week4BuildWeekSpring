@@ -121,11 +121,10 @@ public class FattureController {
 	public ResponseEntity<?> updateFattura(@RequestBody Fattura f){
 		return new ResponseEntity<Fattura>(fattureService.modificaFattura(f),HttpStatus.OK);
 	}
-//	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
-//	@PreAuthorize("hasRole('ADMIN')")
-//	@ResponseBody
-//	public ResponseEntity<?> postFattura(@RequestBody Fattura f){
-//		return new ResponseEntity<Fattura>(fattureService.modificaFattura(f),HttpStatus.OK);
-//	}
+	@PostMapping("/{id}/{importo}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> postFattura(@PathVariable Long id,@PathVariable Double importo){
+		return new ResponseEntity<Fattura>(fattureService.creaFattura(importo, id),HttpStatus.OK);
+	}
 
 }
