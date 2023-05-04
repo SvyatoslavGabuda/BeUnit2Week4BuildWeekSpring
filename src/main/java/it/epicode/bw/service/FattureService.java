@@ -16,6 +16,7 @@ import it.epicode.bw.auth.service.AuthServiceImpl;
 import it.epicode.bw.enums.StatoFattura;
 import it.epicode.bw.models.Cliente;
 import it.epicode.bw.models.Fattura;
+import it.epicode.bw.repository.ClienteRepo;
 import it.epicode.bw.repository.FattureRepo;
 
 @Service
@@ -25,14 +26,16 @@ public class FattureService {
 	FattureRepo fattureRepo;
 	@Autowired
 	AuthServiceImpl authService;
+	@Autowired
+	ClienteRepo cRepo;
 
-	public Fattura creaFattura(Double importo, Cliente c) {
+	public Fattura creaFattura(Double importo, Long id) {
 		Fattura f1 = new Fattura();
 		f1.setAnno(LocalDate.now().getYear());
 		f1.setDataEmissione(LocalDate.now());
 		f1.setStadioFattura(StatoFattura.EMESSA);
-		// clinte = clienteRepo.findById(id);
-		f1.setCliente(c);
+		Cliente clinte = cRepo.findById(id).get();
+		f1.setCliente(clinte);
 		f1.setImporto(importo);
 		fattureRepo.save(f1);
 		return f1;
