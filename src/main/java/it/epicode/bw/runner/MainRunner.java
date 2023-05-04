@@ -5,6 +5,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import it.epicode.bw.auth.entity.ERole;
+import it.epicode.bw.auth.service.AuthServiceImpl;
 import it.epicode.bw.csvreader.CsvReader;
 import it.epicode.bw.models.Comuni_italiani;
 import it.epicode.bw.models.Provincia;
@@ -19,6 +21,8 @@ public class MainRunner implements ApplicationRunner {
 ComuneRepo cRepo;
 @Autowired
 ProvinceRepo pRepo;
+@Autowired
+AuthServiceImpl aS;
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		log.warn("main runner start");
@@ -47,6 +51,8 @@ ProvinceRepo pRepo;
 //			p.setRegione(f.get(2));
 //			pRepo.save(p);
 //		});
+		//aS.changePermissions(1, ERole.ROLE_ADMIN);
+		
 	}
 
 }

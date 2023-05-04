@@ -1,5 +1,6 @@
 package it.epicode.bw.auth.service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -79,6 +80,10 @@ public class AuthServiceImpl implements AuthService{
         user.setEmail(registerDto.getEmail());
         user.setCognomeContatto(registerDto.getLastname());
         user.setPsw(passwordEncoder.encode(registerDto.getPassword()));
+        user.setDataInserimento(LocalDate.now());
+        user.setUltimoContatto(LocalDate.now());
+        user.setEmailContatto(registerDto.getEmail());
+        
 
         Set<Role> roles = new HashSet<>();
         
@@ -104,13 +109,13 @@ public class AuthServiceImpl implements AuthService{
     	else if(role.equals("ROLE_MODERATOR")) return ERole.ROLE_MODERATOR;
     	else return ERole.ROLE_USER;
     }
-//    public void changePermissions(String s,ERole roles) {
-//        Set<Role> role = new HashSet<Role>();
-//        role.add(roleRepository.findByRoleName(roles).get());
-//        com.security.auth.entity.User u = userRepository.findByEmail(s).get();
-//        u.setRoles(role);
-//        userRepository.save(u);
-//    }
+    public void changePermissions(long id,ERole roles) {
+        Set<Role> role = new HashSet<Role>();
+        role.add(roleRepository.findByRoleName(roles).get());
+       Cliente u = userRepository.findById(id).get();
+        u.setRoles(role);
+        userRepository.save(u);
+    }
     public Cliente getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
