@@ -1,4 +1,4 @@
-package it.epicode.bw.service;
+package it.epicode.bw.repo;
 
 import java.time.LocalDate;
 
@@ -19,7 +19,7 @@ import it.epicode.bw.repository.FattureRepo;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @TestPropertySource(locations = "classpath:application.properties")
-class TestFatturaService {
+class TestFatturaRepo {
 
 	@Autowired
 	FattureRepo fRepo;
