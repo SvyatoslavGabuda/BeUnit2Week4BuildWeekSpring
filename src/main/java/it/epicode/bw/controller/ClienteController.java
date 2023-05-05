@@ -67,10 +67,10 @@ public class ClienteController {
 		return new ResponseEntity<List<Cliente>>(clientiService.findByNameContains(imp), HttpStatus.OK);
 	}
 	
-	@GetMapping("/sedeLegale/{imp}") 
+	@GetMapping("/sedeLegale/{id}") 
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-	public ResponseEntity<List<Cliente>> trovaSedeLegale(@PathVariable Indirizzo imp) {
-		return new ResponseEntity<List<Cliente>>(clientiService.findBySedeLegale(imp), HttpStatus.OK);
+	public ResponseEntity<List<Cliente>> trovaSedeLegale(@PathVariable Long id) {
+		return new ResponseEntity<List<Cliente>>(clientiService.findBySedeLegale(id), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -85,5 +85,21 @@ public class ClienteController {
 		return new ResponseEntity<Cliente>(clientiService.modificaCliente(c),HttpStatus.OK);
 	}
 	
+	@PutMapping("/SedeLegale/{id}/{Sid}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> updateSedeLegale(@PathVariable Long id, @PathVariable Long Sid) {
+		return new ResponseEntity<Cliente>(clientiService.assegnaSedelegale(id,Sid),HttpStatus.OK);
+	}
 	
+	@PutMapping("/SedeOperativa/{id}/{Sid}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> updateSedeOperativa(@PathVariable Long id, @PathVariable Long Sid) {
+		return new ResponseEntity<Cliente>(clientiService.assegnaSedeOperativa(id,Sid),HttpStatus.OK);
+	}
+	
+	@GetMapping("/NomeProvincia/{nome}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> getAllClientiByProvincia(@PathVariable String nome) {
+		return new ResponseEntity<List<Cliente>>(clientiService.findByNomeProvincia(nome),HttpStatus.OK);
+	}
 }

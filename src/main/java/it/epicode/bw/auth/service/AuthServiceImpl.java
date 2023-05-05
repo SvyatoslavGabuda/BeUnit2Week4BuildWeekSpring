@@ -87,8 +87,8 @@ public class AuthServiceImpl implements AuthService{
         user.setDataInserimento(LocalDate.now());
         user.setUltimoContatto(LocalDate.now());
         user.setEmailContatto(registerDto.getEmail());
-        user.setSedeLegale(rep.findById(1l).get());
-        user.setSedeOperativa(rep.findById(2l).get());
+//        user.setSedeLegale(rep.findById(1l).get());
+//        user.setSedeOperativa(rep.findById(2l).get());
         
 
         Set<Role> roles = new HashSet<>();

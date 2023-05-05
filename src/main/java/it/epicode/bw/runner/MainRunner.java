@@ -29,8 +29,8 @@ IndirizzoService iS;
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		log.warn("main runner start");
-		String path1 = "C:/Users/pivot/OneDrive/Desktop/Cartella Progetti/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/comuni-italiani.csv";
-		String path2 = "C:/Users/pivot/OneDrive/Desktop/Cartella Progetti/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/province-italiane.csv";
+		String path1 = "C:/Users/Alessandro/eclipse-workspace/Epicode/BuildWeekF/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/comuni-italiani.csv";
+		String path2 = "C:/Users/Alessandro/eclipse-workspace/Epicode/BuildWeekF/BeUnit2Week4BuildWeekSpring/src/main/resources/datipercomuni/province-italiane.csv";
 		CsvReader csv = new CsvReader();
 		
 		// IMPORT LISTA COMUNI
@@ -41,7 +41,7 @@ IndirizzoService iS;
 //			c.setCodice_Provincia(f.get(0));
 //			c.setProgressivo_del_Comune(f.get(1));
 //			c.setDenominazione_in_italiano(f.get(2));
-//			c.setNome_Provincia(f.get(3));
+//			c.setNomeProvincia(f.get(3));
 //			cRepo.save(c);
 //		});
 		 //IMPORT LISTA PROVINCE
@@ -54,8 +54,10 @@ IndirizzoService iS;
 //			p.setRegione(f.get(2));
 //			pRepo.save(p);
 //		});
-		//aS.changePermissions(1, ERole.ROLE_ADMIN);
-//		iS.creaIndirizzo();
+//		aS.changePermissions(1, ERole.ROLE_ADMIN);
+		
+//		iS.creaIndirizzi();
+		
 	}
 
 }

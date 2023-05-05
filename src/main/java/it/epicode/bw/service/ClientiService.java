@@ -2,6 +2,7 @@ package it.epicode.bw.service;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -16,9 +17,11 @@ import com.github.javafaker.Faker;
 import it.epicode.bw.auth.exception.MyAPIException;
 import it.epicode.bw.auth.service.AuthServiceImpl;
 import it.epicode.bw.models.Cliente;
+import it.epicode.bw.models.Comuni_italiani;
 import it.epicode.bw.models.Fattura;
 import it.epicode.bw.models.Indirizzo;
 import it.epicode.bw.repository.ClienteRepo;
+import it.epicode.bw.repository.ComuneRepo;
 
 @Service
 public class ClientiService {
@@ -27,6 +30,10 @@ public class ClientiService {
 	ClienteRepo clienteRepo;
 	@Autowired
 	AuthServiceImpl authService;
+	@Autowired
+	IndirizzoService irepo;
+	@Autowired
+	ComuneRepo crepo;
 
 	public Cliente creaCliente(String ragioneSociale, String pIva, Double fatturatoAnnuale, Indirizzo indirizzo) {
 
@@ -85,6 +92,22 @@ public class ClientiService {
 	public Page<Cliente> findAllClienti(Pageable pag) {
 		return clienteRepo.findAll(pag);
 		
+	}
+	
+	public Cliente assegnaSedelegale(Long id, Long Sid) {
+		Cliente c = findById(id);
+		Indirizzo i = irepo.findById(Sid);
+		c.setSedeLegale(i);
+		clienteRepo.save(c);
+		return c;
+	}
+	
+	public Cliente assegnaSedeOperativa(Long id, Long Sid) {
+		Cliente c = findById(id);
+		Indirizzo i = irepo.findById(Sid);
+		c.setSedeLegale(i);
+		clienteRepo.save(c);
+		return c;
 	}
 	
 //	<<<<INIZIO FATTURATO>>>>
@@ -175,8 +198,9 @@ public class ClientiService {
 	
 	
 //	<<<<INIZIO RICERCA SEDE LEGALE>>>>	
-	public List<Cliente> findBySedeLegale( Indirizzo sedeLegale){
-		List<Cliente> list = clienteRepo.findBySedeLegale(sedeLegale);
+	public List<Cliente> findBySedeLegale(Long id){
+		Indirizzo i = irepo.findById(id);
+		List<Cliente> list = clienteRepo.findBySedeLegale(i);
 		return list;
 	}
 	public List<Cliente> orderBySedeLegale( Indirizzo sedeLegale){
@@ -194,4 +218,15 @@ public class ClientiService {
 	}
 //	<<<<FINE RICERCA SEDE LEGALE>>>>	
 
+	public List<Cliente> findByNomeProvincia(String n) {
+		List<Comuni_italiani> list = crepo.findByNomeProvinciaIgnoreCase(n);
+		List<Indirizzo> lind = new ArrayList<Indirizzo>();
+		list.forEach(c -> c.getIndirizzo().forEach(i -> lind.add(i)));
+		List<Cliente> cList = new ArrayList<Cliente>();
+		lind.forEach(j -> cList.addAll(findBySedeLegale(j.getId_indirizzo())));
+		return cList;
+	}
+	
+	
+	
 }

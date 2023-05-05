@@ -30,10 +30,10 @@ public class Comuni_italiani {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_comuneItaliano;
-	private String Codice_Provincia;
-	private String Progressivo_del_Comune;
-	private String Denominazione_in_italiano;
-	private String Nome_Provincia;
+	private String codice_Provincia;
+	private String progressivo_del_Comune;
+	private String denominazione_in_italiano;
+	private String nomeProvincia;
 
 	@JsonIgnoreProperties(value = "comune")
 	@OneToMany(mappedBy = "comune", fetch = FetchType.EAGER)
@@ -41,9 +41,9 @@ public class Comuni_italiani {
 
 	@Override
 	public String toString() {
-		return "Comuni_italiani [id_comuneItaliano=" + id_comuneItaliano + ", Codice_Provincia=" + Codice_Provincia
-				+ ", Progressivo_del_Comune=" + Progressivo_del_Comune + ", Denominazione_in_italiano="
-				+ Denominazione_in_italiano + ", Nome_Provincia=" + Nome_Provincia + "]";
+		return "Comuni_italiani [id_comuneItaliano=" + id_comuneItaliano + ", Codice_Provincia=" + codice_Provincia
+				+ ", Progressivo_del_Comune=" + progressivo_del_Comune + ", Denominazione_in_italiano="
+				+ denominazione_in_italiano + ", Nome_Provincia=" + nomeProvincia + "]";
 	}
 	
 	
